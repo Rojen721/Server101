@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Server/SRVR_LauncherScene.unity
+    guid: 2e47b033959e04a37a5cd7c401a34c2d
+  - enabled: 0
+    path: Assets/Scenes/Server/SRVR_GameScene.unity
+    guid: ecda0bc8969354510af0a8507f54beee
+  - enabled: 0
+    path: Assets/Scenes/Server/SRVR_LobyScene.unity
+    guid: 32aa7caec55ac4202a2427635febdf4a
+  - enabled: 1
+    path: Assets/Scenes/Client/CLNT_LauncherScene.unity
+    guid: 9f204db0827044be4ad1086eae80820d
+  - enabled: 1
+    path: Assets/Scenes/Client/CLNT_LobyScene.unity
+    guid: 2e7a28b6f04b749bfadffaa4d86f5b69
+  - enabled: 1
+    path: Assets/Scenes/Client/CLNT_GameScene.unity
+    guid: d918cae1d5b0b4f26b3202263a375e05
+  m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
