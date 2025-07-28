@@ -1,8 +1,10 @@
+using Fusion;
+using System;
+using System.IO;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using Fusion;
 
 public class GameStartUI : MonoBehaviour
 {
@@ -18,10 +20,13 @@ public class GameStartUI : MonoBehaviour
         StartGameButton.onClick.AddListener(OnStartGameClicked);
         ServerBinaryPath = Application.platform switch
         {
-            RuntimePlatform.OSXPlayer => "/Users/rojenonat/Server101/ServerTest/Server101",
-            RuntimePlatform.WindowsPlayer => @"C:\Server101\ServerTest\Server101.exe",
-            RuntimePlatform.OSXEditor => "/Users/rojenonat/Server101/ServerTest/Server101",
-            RuntimePlatform.WindowsEditor =>@"C:\Server101\ServerTest\Server101.exe",
+            RuntimePlatform.OSXPlayer or RuntimePlatform.OSXEditor =>
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Server101/ServerTest/Server101"),
+
+            RuntimePlatform.WindowsPlayer or RuntimePlatform.WindowsEditor =>
+                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                             @"GitHub\Server101\ServerTest_Windows\Server101.exe"),
+
             _ => throw new System.NotSupportedException("Platform desteklenmiyor")
         };
     }
@@ -39,6 +44,7 @@ public class GameStartUI : MonoBehaviour
     
     private async Task StartClientAndServerAsync(string roomName)
     {
+        Debug.Log(ServerBinaryPath);
         // Server'ı başlat
         CrossPlatformServerLauncher.LaunchServer(ServerBinaryPath, "gameplay", roomName);
 

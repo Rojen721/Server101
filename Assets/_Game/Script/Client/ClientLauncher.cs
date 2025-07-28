@@ -1,5 +1,7 @@
-using System.Threading.Tasks;
 using Fusion;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
@@ -18,9 +20,14 @@ public class ClientLauncher : MonoBehaviour
     /// <summary>
     /// Windows üzerinde server uygulamasının çalıştırılacağı dosya yolu.
     /// </summary>
-    [SerializeField] private string windowsExePath = "C:\\Server101\\ServerTest\\MyServer.exe";
-
     
+    private string windowsExePath = Path.Combine(
+    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+    @"GitHub\Server101\ServerTest_Windows\Server101.exe"
+);
+
+
+
     private async void Start()
     {
         // Birkaç saniye bekleyelim ki server ayağa kalksın
@@ -61,13 +68,13 @@ public class ClientLauncher : MonoBehaviour
     /// <returns>Platforma uygun server uygulaması dosya yolu</returns>
     private string GetPlatformPath()
     {
-#if UNITY_STANDALONE_OSX
-        return macAppPath;
-#elif UNITY_STANDALONE_WIN
+#if UNITY_STANDALONE_OSX || UNITY_EDITOR_OSX
+    return macAppPath;
+#elif UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
         return windowsExePath;
 #else
-        Debug.LogError("Desteklenmeyen platform!");
-        return string.Empty;
+    Debug.LogError("Desteklenmeyen platform!");
+    return string.Empty;
 #endif
     }
 }

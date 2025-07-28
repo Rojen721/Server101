@@ -15,6 +15,7 @@ public static class CrossPlatformServerLauncher
     /// <param name="sessionName">SessionName argümanı</param>
     public static void LaunchServer(string basePath, string scene, string sessionName)
     {
+        Debug.Log(basePath);
         string binaryPath = GetPlatformBinaryPath(basePath);
 
         if (!File.Exists(binaryPath))
